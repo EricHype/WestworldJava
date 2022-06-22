@@ -9,9 +9,16 @@ public class App {
                 1, 5, 5, 0,
                 5, new TestState1()
         );
+        miner.addMoney(10);
+        miner.subtractMoney(10);
+
         for(int i = 0; i < 10; i++) {
             miner.update();
+
             Thread.sleep(500);
         }
+        //Miner is thirsty - Go To Saloon - drinks cost money.
+
+
     }
 }

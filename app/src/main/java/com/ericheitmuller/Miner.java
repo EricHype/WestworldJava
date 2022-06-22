@@ -37,6 +37,7 @@ public class Miner extends BaseGameEntity {
     @Override
     public void update() {
         thirst += 1;
+        fatigue += 1;
         if(currentState != null) {
             currentState.execute(this);
         }
@@ -54,5 +55,32 @@ public class Miner extends BaseGameEntity {
 
     public void setThirst(int thirst) {
         this.thirst = thirst;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+    public void addMoney(int money) {
+
+        this.moneyInBank += money;
+    }
+    public void subtractMoney(int money) {
+        if(this.moneyInBank > 0) {
+            this.moneyInBank -= money;
+        } else {
+            throw new Error("No money to spend");
+        }
+    }
+    public int getMoney() {
+        return this.moneyInBank;
+    }
+    public boolean isTired() {
+        if(this.fatigue >= this.tirednessThreshold) {
+            return true;
+        }
+        return false;
+    }
+    public void rest() {
+        this.fatigue = 0;
     }
 }
